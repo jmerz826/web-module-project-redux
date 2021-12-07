@@ -59,9 +59,8 @@ const Movie = (props) => {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return ({
-        movies: state.movies,
+        movies: state.movie.movies,
     })
 }
 
