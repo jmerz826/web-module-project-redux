@@ -2,7 +2,7 @@ import { TOGGLE_FAVORITES, ADD_FAVORITE, REMOVE_FAVORITE}  from './../actions/fa
 
 const initialState = {
     favorites: [],
-    displayFavorites: true
+    displayFavorites: true,
 }
 
 const favoritesReducer = (state = initialState, action)=> {
@@ -13,17 +13,22 @@ const favoritesReducer = (state = initialState, action)=> {
                 displayFavorites: !state.displayFavorites
             }
         }
-        case(ADD_FAVORITE): {
-            return {
-                ...state,
-                favorites: [...state.favorites, action.payload]
+        case (ADD_FAVORITE): {
+            const exists = state.favorites.find(el => el.id === action.payload.id);
+            if (!exists) {
+                return {
+                    ...state,
+                    favorites: [...state.favorites, action.payload]
+                }
+            } else {
+                alert('Already a favorite!');
             }
         }
         case(REMOVE_FAVORITE): {
             return {
                 ...state,
-                favorites: state.favorites.filter(item=>(item.id !== action.payload))
-            }
+                favorites: state.favorites.filter(item => (item.id !== action.payload))
+            };
         }
         default:
             return(state);

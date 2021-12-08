@@ -21,7 +21,8 @@ const Movie = (props) => {
 
     // const movies = [];
     const movie = props.movies.find(movie => movie.id === Number(id));
-    
+    // console.log(props.favorites);
+
     return(<div className="modal-page col">
         <div className="modal-dialog">
             <div className="modal-content">
@@ -53,7 +54,7 @@ const Movie = (props) => {
                         <section>
                             {props.displayFavorites && <span className="m-2 btn btn-dark" onClick={() => {
                                 handleAddFavorite(movie);
-                            } }>Favorite</span>}
+                            }}>Favorite</span>}
 
                             <span className="delete"><input type="button" className="m-2 btn btn-danger" value="Delete" onClick={() => {
                                 handleDelete(movie.id);
@@ -69,7 +70,8 @@ const Movie = (props) => {
 const mapStateToProps = state => {
     return ({
         movies: state.movie.movies,
-        displayFavorites: state.favorites.displayFavorites
+        displayFavorites: state.favorites.displayFavorites,
+        favorites: state.favorites.favorites
     })
 }
 
